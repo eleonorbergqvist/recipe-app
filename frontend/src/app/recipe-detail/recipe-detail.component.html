@@ -1,0 +1,16 @@
+<div>
+  <h1>RECIPE DETAIL COMPONENT</h1>
+</div>
+<div class="card-columns" *ngIf="recipe else loading">
+  <div class="card">
+    <img class="card-img-top" src="{{recipe.images[0].hostedLargeUrl}}" alt="{{ recipe.name }}">
+    <div class="card-body">
+      <h5 class="card-title">{{ recipe.name | uppercase }}</h5>
+      <p class="card-text" *ngFor="let ingredientLine of recipe.ingredientLines" >{{ ingredientLine }}</p>
+      <p>Servings: {{ recipe.numberOfServings }} </p>
+      <p>Total time: {{ recipe.totalTime }} </p>
+    </div>
+    <div class="card-footer">
+    </div>
+  </div>
+</div>

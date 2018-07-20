@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+.container {
+  text-align: center;
+  margin: auto;
+}
+
+@media @media only screen and (min-width: 1200px) {
+  body {
+    margin-right: 150px;
+    margin-left: 150px;
+  }
+}
+

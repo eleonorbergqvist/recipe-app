@@ -1,0 +1,72 @@
+
+<div class="form-group container-fluid">
+  <form (ngSubmit)="onSubmit()" #search="ngForm">
+    {{diagnostic}}
+  <input class="form-control" type="text" placeholder="Search for recipes"
+    [(ngModel)]="model.query" #query="ngModel" name="query"
+  >
+
+  <div class="form-check form-check-inline row">
+    <div class=".col-">
+      <label class="form-check-label" for="inlineCheckbox1"> Appetizers </label>
+      <input class="form-check-input"
+        type="checkbox"
+        id="inlineCheckbox1"
+        value="Appetizer"
+        [(ngModel)]="model.appetizer" #appetizer="ngModel"
+        name="appetizer"
+      >
+    </div>
+    <div class=".col-">
+      <label class="form-check-label" for="inlineCheckbox1"> Desserts </label>
+      <input class="form-check-input"
+        type="checkbox"
+        id="inlineCheckbox1"
+        value="Dessert"
+        [(ngModel)]="model.dessert" #dessert="ngModel"
+        name="dessert"
+      >
+    </div>
+    <div class=".col-">
+      <label class="form-check-label" for="inlineCheckbox1"> Main course </label>
+      <input class="form-check-input"
+        type="checkbox"
+        id="inlineCheckbox1"
+        value="Main"
+        [(ngModel)]="model.main" #main="ngModel"
+        name="main"
+      >
+    </div>
+    <div class=".col-">
+      <label class="form-check-label" for="inlineCheckbox1"> Peanut free </label>
+      <input class="form-check-input"
+        type="checkbox"
+        id="inlineCheckbox1"
+        value="Nutfree"
+        [(ngModel)]="model.nutfree" #main="ngModel"
+        name="nutfree"
+      >
+    </div>
+    <div class=".col-">
+      <label class="form-check-label" for="inlineCheckbox1"> Gluten free </label>
+      <input class="form-check-input"
+        type="checkbox"
+        id="inlineCheckbox1"
+        value="Glutenfree"
+        [(ngModel)]="model.glutenfree" #main="ngModel"
+        name="glutenfree"
+      >
+    </div>
+    <div class=".col-">
+      <label class="form-check-label" for="inlineCheckbox1"> Time to prepare</label>
+      <input class="form-check-input"
+        type="text"
+        value="Time"
+        [(ngModel)]="model.time" #main="ngModel"
+        name="time"
+      >
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary container-fluid">Submit</button>
+</form>
+</div>

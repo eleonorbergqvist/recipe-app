@@ -1,0 +1,13 @@
+<div class="card-columns" *ngIf="recipes else loading">
+  <div class="card" *ngFor="let recipe of recipes">
+    <img class="card-img-top" src="{{ recipe.imageUrlsBySize[90] }}" alt="{{ recipe.recipeName }}">
+    <div class="card-body">
+      <h5 class="card-title">{{ recipe.recipeName | uppercase }}</h5>
+      <p class="card-text" *ngFor="let ingredient of recipe.ingredients" >{{ ingredient }}</p>
+    </div>
+    <div class="card-footer">
+      <button type="button" class="btn btn-outline-info" (click)="addFavorite(recipe)">Add</button>
+      <a class="btn btn-outline-info" routerLink="/recipe/{{recipe.id}}">Info</a>
+    </div>
+  </div>
+</div>
