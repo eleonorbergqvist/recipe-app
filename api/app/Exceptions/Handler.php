@@ -50,12 +50,12 @@ class Handler extends ExceptionHandler
     }
 
     // https://laravel-angular.io/docs/1/jwt-auth-install/
-    protected function unauthenticated($request, AuthenticationException $exception)
+    /*protected function unauthenticated($request, AuthenticationException $exception)
     {
         if ($request->expectsJson()) {
             return response()->error('Unauthenticated.', 401);
         }
 
         return redirect()->guest(route('login'));
-    }
+    }*/
 }

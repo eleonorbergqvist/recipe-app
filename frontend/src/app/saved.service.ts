@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, BehaviorSubject } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { SessionService } from './session.service';
 import { Recipe } from './recipe';
 
+// const API_HOST = 'http://recipeapp.test'
+const API_HOST = 'http://elliesrecipeapp.chas.academy/service'
 
 @Injectable({
   providedIn: 'root'
@@ -14,52 +18,50 @@ export class SavedService {
   recipes : Recipe[] = [];
 
 
-  constructor() {
-    this.refresh();
+  constructor(private http: HttpClient, private sessionService: SessionService) {
+  }
+
+  getFavorites() {
+    const token = this.sessionService.getToken();
+
+    return this.http.get<any>(`${API_HOST}/api/favorites`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    }).pipe(
+      map(res => res.data.favorites),
+      map(res => res.map(x => x.data)),
+      map(res => res.map(x => JSON.parse(x)),
+    ))
   }
 
   add(recipe) {
-    let recipes = this.recipes.filter((x) => x.id !== recipe.id);
-    recipes = [recipe, ...this.recipes];
+    const token = this.sessionService.getToken();
 
-    this.save(recipes);
-    this.refresh();
+    const body = {
+      slug: recipe.id,
+      data: JSON.stringify(recipe),
+    }
+
+    return this.http.post<any>(`${API_HOST}/api/favorites/create`, body, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+
   }
 
   remove(recipe) {
-    const recipes = this.recipes.filter((x) => x.id !== recipe.id);
+    const token = this.sessionService.getToken();
 
-    this.save(recipes);
-    this.refresh();
-  }
-
-  private refresh() {
-    this.recipes = this.load();
-    this.subject.next(this.recipes);
-  }
-
-  private load() {
-    let json = localStorage.getItem('favorites');
-    if (!json) {
-      return [];
+    const body = {
+      slug: recipe.id
     }
 
-    return JSON.parse(json)
+    return this.http.post<any>(`${API_HOST}/api/favorites/delete`, body, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
   }
-
-  private save(recipes) {
-    localStorage.setItem('favorites', JSON.stringify(recipes));
-  }
-
-  /*
-  getFavorites(recipes) {
-
-  return this.recipes
-  .pipe(
-      map(list => list as Recipe[])
-    )
-    .subscribe(res => this.subject.next(res));
-  }
-  */
-
 }

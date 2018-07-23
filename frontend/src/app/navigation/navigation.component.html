@@ -1,4 +1,13 @@
-<nav class="navbar navbar-light bg-light">
-  <a class="navbar-brand" routerLink="/" routerLinkActive="active">Recipes</a>
-  <a class="navbar-brand" routerLink="/favorites" routerLinkActive="active">Favorites</a>
+<nav class="navbar navbar-light bg-light d-flex justify-content-around">
+  <ng-template [ngIf]="!isLoggedIn()">
+    <a class="nav-item nav-link" routerLink="/register" routerLinkActive="active">Register</a>
+    <a class="nav-item nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+  </ng-template>
+
+  <ng-template [ngIf]="isLoggedIn()">
+    <a class="nav-item nav-link" routerLink="/recipies" routerLinkActive="active">Recipes</a>
+    <a class="nav-item nav-link" routerLink="/favorites" routerLinkActive="active">Favorites</a>
+    <a class="nav-item nav-link" routerLink="/logout" routerLinkActive="active">Logout</a>
+  </ng-template>
+
 </nav>

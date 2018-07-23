@@ -1,6 +1,4 @@
-<p>
-  favorites works!
-</p>
+<h3>Favorites</h3>
 <div class="card-columns" *ngIf="recipes else loading">
   <div class="card" *ngFor="let recipe of recipes">
     <img class="card-img-top" src="{{ recipe.imageUrlsBySize[90] }}" alt="{{ recipe.recipeName }}">

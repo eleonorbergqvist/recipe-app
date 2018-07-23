@@ -14,16 +14,15 @@ import { Recipe } from '../recipe';
 export class RecipeListComponent implements OnInit {
   recipes: Recipe[];
 
-  constructor(private recipeListService: RecipeListService, private savedService:SavedService, private http:HttpClient) {
-    this.recipeListService = recipeListService;
-    this.savedService = savedService;
-  }
+  constructor(private recipeListService: RecipeListService, private savedService:SavedService, private http:HttpClient) { }
 
   ngOnInit() {
-    this.recipeListService.subject.subscribe(res => this.recipes = res);
+    this.recipeListService.subject
+      .subscribe(res => this.recipes = res);
   }
 
   addFavorite(recipe) {
-    this.savedService.add(recipe);
+    this.savedService.add(recipe)
+      .subscribe((x) => window.alert("Added to favorites!"))
   }
 }

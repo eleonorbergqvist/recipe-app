@@ -286,6 +286,11 @@ return [
         */
 
         'auth' => Tymon\JWTAuth\Providers\Auth\Illuminate::class,
+        /*
+        'auth' => function ($app) {
+            return new Tymon\JWTAuth\Providers\Auth\IlluminateAuthAdapter($app['auth']);
+        },
+        */
 
         /*
         |--------------------------------------------------------------------------

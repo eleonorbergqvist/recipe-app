@@ -32,8 +32,6 @@ export class RecipeDetailComponent implements OnInit {
   getRecipe(recipeId) {
     this.recipeDetailService.getRecipe(recipeId)
       .subscribe((recipe) => {
-        console.log(recipe);
-         console.log(recipe.images[0].hostedLargeUrl);
         this.recipe = recipe;
       });
   }
